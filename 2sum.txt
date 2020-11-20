@@ -1,0 +1,16 @@
+def twosum(arr,n=0):
+    countd={}
+    for i in range(len(arr)):
+        if arr[i] in countd:
+            print (countd[arr[i]]+1,i+1)
+            return countd[arr[i]]+1,i+1
+ 
+        else:
+            countd[n-arr[i]]=i
+    print (-1)
+    return (-1)
+with open("rosalind_2sum.txt", "r") as f:
+        k, n = map(int, f.readline().strip().split())
+        A = [[int(i) for i in line.strip().split()] for line in f]
+for i in range(k):
+        r = two_sum(A[i])

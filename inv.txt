@@ -1,0 +1,29 @@
+def invertionscount(arr):
+    if len(arr)==1:
+        return arr,0
+    else:
+        a=arr[:len(arr)//2]
+        b=arr[len(arr)//2:]
+        a,ai=invertionscount(a)
+        b,bi=invertionscount(b)
+        c=[]
+        i=0
+        j=0
+        inv=0+ai+bi
+    while i<len(a) and j<len(b):
+            if a[i]<=b[j]:
+                c.append(a[i])
+                i+=1
+            else:
+                c.append(b[j])
+                j+=1
+                inv+=(len(a)-i)
+    c+=a[i:]
+    c+=b[j:]
+    return c,inv
+with open('rosalind_inv (2).txt','r') as f:
+    content= int(f.readline().strip())
+    s=[int(i) for i in f.readline().strip().split()]
+    
+arr,inv= invertionscount(s)
+print (inv)

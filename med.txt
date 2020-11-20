@@ -1,0 +1,10 @@
+#*******MED*******#
+with open('rosalind_med (4).txt','r') as f:
+    content= int(f.readline().strip())
+    arr= [int(i) for i in f.readline().strip().split()]
+    n=int(f.readline().strip())
+
+s=sorted(arr)
+l=s.pop(n-1)
+
+print (l)

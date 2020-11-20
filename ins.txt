@@ -1,0 +1,15 @@
+def insertion(a,length): 
+    count=0 
+    for i in range(1,length): 
+        key=a[i] 
+        jj=i 
+        while(jj>0 and a[jj-1]>key): 
+            a[jj]=a[jj-1] 
+            jj=jj-1 
+            count += 1 
+        a[jj]=key 
+    print (count) 
+    
+a = numpy.loadtxt('rosalind_ins (2).txt',skiprows=1 )
+length= 947
+print (insertion(a,length))

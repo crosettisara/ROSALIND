@@ -1,0 +1,22 @@
+def bins(arr,item,low=0,high=len(arr)-1):
+    if (high<low):
+        return -1
+    mid=int(low+((high-low)/2))
+    if item<arr[mid]:
+        return bins(arr,item,low,mid-1)
+    elif item> arr[mid]:
+        return bins(arr,item,mid+1,high)
+    else:
+        return mid+1
+
+with open('rosalind_bins (9).txt','r') as f:
+    content= f.read().splitlines()
+    
+arr= [int(i) for i in content[2].split()]
+item= [int(i) for i in content[3].split()]
+line=''
+
+for i in range(len(item)):
+    line+=str(bins(arr,item[i],low=0, high=len(arr)-1))+ ' '
+    
+print (line)

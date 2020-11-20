@@ -1,0 +1,7 @@
+with open('rosalind_ms.txt','r') as f:
+    content= f.read().splitlines()
+    
+arr= [int(i) for i in content[1].split()]
+sortarr=sorted(arr)
+
+print (' '.join(map(str, sortarr)))

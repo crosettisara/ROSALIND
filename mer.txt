@@ -1,0 +1,14 @@
+with open('rosalind_mer.txt','r') as f:
+    content= f.read().splitlines()
+    
+arr= [int(i) for i in content[1].split()]
+item= [int(i) for i in content[3].split()]
+
+l=sorted(arr+item)
+
+
+
+print (' '.join(map(str, l)))
+
+
+

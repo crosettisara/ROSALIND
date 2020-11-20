@@ -1,0 +1,23 @@
+def par2(arr):
+    l,s,c=[],[],[]
+    l.append(arr[0])
+    for i in range(1,len(arr)):
+        if arr[i]<=arr[0]:
+            s.append(arr[i])
+        #elif arr[i]==arr[0]:
+           # l.append(arr[0])
+        else:
+            c.append(arr[i])
+    l=s+l+c
+    return l
+#arr=[4, 5, 6, 4, 1, 2, 5, 7, 4]  
+#2 1 4 4 4 5 7 6 5
+#print (par2(arr))
+with open('rosalind_par3.txt','r') as f:
+    content= int(f.readline().strip())
+    s=[int(i) for i in f.readline().strip().split(' ')]
+B=par2(s)
+for i in B:
+    print (i,end=' ')
+
+print ()
