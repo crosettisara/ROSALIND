@@ -1,0 +1,16 @@
+import itertools
+ 
+with open("rosalind_lexf.txt") as f:
+    data = f.read().split()
+    string = data[:-1]
+    n = int(data[-1])
+perm = itertools.product(string, repeat = n)
+lst = []
+for i, j in enumerate(list(perm)):
+    permutation = ''
+    for item in j:
+        permutation += str(item)
+    lst.append(permutation)
+lst.sort()
+for item in lst:
+    print(item, end="\n")

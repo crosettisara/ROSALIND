@@ -1,0 +1,28 @@
+from Bio import SeqIO
+def revc(s):
+    s=s[::-1]
+    t = ''
+    for i in range(len(s)):
+        if s[i] == 'A':
+            t += 'T'
+        elif s[i] == 'T':
+            t += 'A'
+        elif s[i] == 'G':
+            t += 'C'
+        else:
+            t += 'G'
+
+    return t
+def revp(s):
+    for i in range(len(s)):
+        for j in range(4,13):
+            if s[i:i+j]==revc(s[i:i+j]) and (i+j<= len(s)):
+                print (i+1,j)
+                
+name,string=[],[]
+with open ('rosalind_revp.txt','r') as f:
+    for seq_record in SeqIO.parse(f,'fasta'):
+        name.append(str(seq_record.name))
+        string.append(str(seq_record.seq))
+s= string[0]
+revp(s)

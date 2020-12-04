@@ -1,0 +1,8 @@
+def fib(moths,offsprings):
+    parent,child=1,1
+    for itr in range(moths-1):
+        child,parent=parent,parent+(child*offsprings)
+    return child
+print (fib(29, 4))
+
+

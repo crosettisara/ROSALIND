@@ -1,0 +1,33 @@
+def RNA_splicing(dna_string, introns):
+    for intron in introns:
+        dna_string = dna_string.replace(intron, "")
+    mRNA=dna_string.replace('T','U')
+    protein  = ""
+    L = []
+    i = mRNA.find('AUG')
+    mRNA = mRNA[i:]
+    for n in range(0, len(mRNA), 3):
+        L.append(mRNA[n:n+3])
+    with open('codon_table2.txt') as cd:
+        cd = cd.read()
+        cd = cd.splitlines()
+    stop = 0
+    for e in L:
+        for trp in cd: 
+            if e in trp:
+                if 'stop' not in trp:
+                    protein += (trp[-1])
+                if 'stop' in trp:
+                    stop = 1
+        if stop == 1:
+            break
+    return protein
+
+seq_name, seq_string = [], []
+with open ("rosalind_splc (2).txt",'r') as fa:
+    for seq_record  in SeqIO.parse(fa,'fasta'):
+            seq_name.append(str(seq_record.name))
+            seq_string.append(str(seq_record.seq))
+    dna_string, introns = seq_string[0], seq_string[1:]
+    rna_string = RNA_splicing(dna_string, introns)
+    print(rna_string)          

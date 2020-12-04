@@ -1,0 +1,19 @@
+def readfile(filepath):
+    with open(filepath,'r') as f:
+        return [l.strip() for l in f.readlines()]
+def gc(seq):
+    return round(((seq.count('C')+seq.count('G'))/len(seq)*100),6)
+fastafile= readfile('rosalind_gc.txt')
+fastadict={}
+fastalabel=''
+for line in fastafile:
+    if '>' in line:
+        fastalabel=line
+        fastadict[fastalabel]=''
+    else:
+        fastadict[fastalabel]+=line
+#print (fastadict)
+resultdict={key:gc(value) for (key,value) in fastadict.items()}
+#print (resultdict)
+maxkey=max(resultdict,key=resultdict.get)
+print(f'{maxkey[1:]}\n{resultdict[maxkey]}')
