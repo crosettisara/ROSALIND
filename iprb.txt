@@ -1,0 +1,7 @@
+i = m * m + 4 * n * n + 4 * m * n - 4 * n - m
+j = 4 * (k + m + n) * (k + m + n - 1)
+result = 1 - float(i) / j
+k=28
+m=22
+n=16
+print(result)

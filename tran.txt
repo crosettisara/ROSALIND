@@ -1,0 +1,23 @@
+from Bio import SeqIO
+name, string = [], []
+with open ('rosalind_tran (1).txt','r') as fa:
+    for seq_record  in SeqIO.parse(fa,'fasta'):
+        name.append(str(seq_record.name))
+        string.append(str(seq_record.seq))
+s, t = string
+transiotion=[('A','G') ,('G','A'),('T','C'),('C','T')]
+transvertion=[('A','C') ,('G','C'),('T','A'),('C','A'),('A','T') ,('G','T'),('T','G'),('C','G')]
+l=min(len(s),len(t))
+trans=0
+tranv=0
+#s='GCAACGCACAACGAAAACCCTTAGGGACTGGATTATTTCGTGATCGTTGTAGTTATTGGAAGTACGGGCATCAACCCAGTT'
+#t='TTATCTGACAAAGAAAGCCGTCAACGGCTGGATAATTTCGCGATCGTGCTGGTTACTGGCGGTACGAGTGTTCCTTTGGGT'
+for i in range(0,l):
+    if (s[i],t[i]) in transiotion:
+        trans+=1
+    if (s[i],t[i]) in transvertion:
+        tranv+=1
+#return trans
+#return tranv
+print (trans/tranv)
+    

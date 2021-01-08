@@ -1,0 +1,27 @@
+from Bio import SeqIO                      
+sequences = []                             
+handle = open('rosalind_lcsq (2).txt', 'r')     
+for record in SeqIO.parse(handle, 'fasta'):
+    sequences.append(str(record.seq))      
+handle.close()                             
+s =   sequences[0]  #'ACGTACGTGACG'                     
+t =     sequences[1]   # 'GTA'                                                
+lst =[[0 for i in range(len(t)+1)] for i in range(len(s)+1)]                           
+for i, x in enumerate(s):                    
+    for j, y in enumerate(t):                                  
+            if x == y:               
+                lst[i+1][j+1]=lst[i][j]+1
+            else:
+                lst[i+1][j+1]=max(lst[i+1][j], lst[i][j+1])           
+motif = '' 
+x,y=len(s),len(t)
+while x * y !=0:
+    if lst[x][y]==lst[x-1][y]:
+        x-=1
+    elif lst[x][y]==lst[x][y-1]:
+        y-=1
+    else:
+        motif = s[x-1]+ motif
+        x-=1
+        y-=1
+print (motif)  

@@ -1,0 +1,29 @@
+def readfasta(fasta):
+    results = []
+    strings = fasta.strip().split('>')
+
+    for s in strings:
+        if len(s):
+            p = s.split()
+            k = p[0]
+            v = ''.join(p[1:])
+            results.append((k, v))
+
+    return results
+
+
+def grph(fasta, n):
+    lts = []
+
+    dna = parse_fasta(fasta)
+
+    for k1, v1 in dna:
+        for k2, v2 in dna:
+            if k1 != k2 and v1.endswith(v2[:n]):
+                lts.append((k1, k2))
+
+    return lts
+dataset = open('rosalind_grph.txt').read()
+
+for edge in grph(dataset, 3):
+        print( edge[0], edge[1])

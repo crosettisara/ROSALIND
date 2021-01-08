@@ -1,0 +1,61 @@
+with open("rosalind_orf (1).txt","r") as f:
+    f.readline()
+    dna=''
+    for line in f:
+        dna+=line.strip()
+    dna=list(dna)
+
+rnareverse=[]
+
+for i in range(len(dna)):
+    ind=len(dna)-1-i
+    if dna[ind]=="T":
+        dna[ind]="U"
+        rnareverse.append("A")
+    else:
+        if dna[ind] == "A":
+            rnareverse.append("U")
+        else:
+            if dna[ind]=="C":
+                rnareverse.append("G")
+            else:
+                rnareverse.append("C")
+
+rna=''.join(dna)
+rnareverse=''.join(rnareverse)
+
+with open('codon_table2.txt') as f: 
+    d = dict(x.rstrip().split(None, 1) for x in f) 
+print (d)
+
+answer=[]
+for i in range(len(rna)-2):
+    if rna[i:i+3]=='AUG':
+        j=i
+        prot=''
+        letter='AUG'
+        while d[letter]!="stop":
+            prot+=d[letter]
+            j+=3
+            if j>len(rna)-3:
+                break
+            letter=rna[j:j+3]
+        if d[letter]=="stop" and prot not in answer:
+            answer.append(prot)
+
+for i in range(len(rnareverse)-2):
+    if rnareverse[i:i+3]=='AUG':
+        j=i
+        prot=''
+        letter='AUG'
+        while d[letter]!="stop":
+            prot+=d[letter]
+            j+=3
+            if j>len(rnareverse)-3:
+                break
+            letter=rnareverse[j:j+3]
+        if d[letter]=="stop" and prot not in answer:
+            answer.append(prot)
+
+for i in answer:
+    print(i)

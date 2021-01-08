@@ -1,0 +1,6 @@
+we know that each tree to be complete
+must have a complete set of leaves for each node. 
+so we will have for 1 node 3 leaves, for 2 nodes 4 leaves...
+in standar trees each nodes must have 2 leaves to be complete, 
+so for our rosalind problem we have just to remove 2 from the 
+number of leaves that rosaind gives us.

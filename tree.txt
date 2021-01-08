@@ -1,0 +1,12 @@
+tree = []                                          
+with open('rosalind_tree.txt', 'r') as f:             
+    for line in f:                                 
+        split_data = [int(x) for x in line.split()]
+        tree.append(split_data)                    
+
+n = tree[0][0] 
+#print (n)
+edges = tree[1:] 
+#print (edges)
+#print (len(edges))
+print(n - len(edges) - 1)       
